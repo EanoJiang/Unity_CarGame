@@ -36,9 +36,14 @@ namespace RacingGame.Car
         public float motorTorque = 1500;                                 //扭矩(车轮转动力)
         public float brakePower = 90000;                                //手刹制动力
         // public float steeringMax = 30;   //最大转向角
+        public float thrustForce = 10000f;       //车子氮气加速
 
         public float downForceValue = 50f;      //下压力
         public float kph;   //  速度 km/h
+
+        public float totalPower;    //总功率
+        public float wheelsRPM;      //
+        public AnimationCurve enginePower;  //汽车引擎功率曲线
 
         private void Start()
         {
@@ -54,7 +59,7 @@ namespace RacingGame.Car
             MoveVehicle();
             SteerVehicle();
 
-            GetFriction();
+            // GetFriction();
         }
 
         /// <summary>
@@ -104,6 +109,11 @@ namespace RacingGame.Car
             var handBrakeTorque = handBrake ? brakePower : 0f;
             wheelColliders[2].brakeTorque = wheelColliders[3].brakeTorque = handBrakeTorque;
 
+            //氮气加速
+            // if (GameInputManager.Instance.Sprint)
+            // {
+            //     _rigidbody.AddForce(Vector3.forward * thrustForce);
+            // }
         }
 
         /// <summary>
